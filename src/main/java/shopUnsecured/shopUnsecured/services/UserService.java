@@ -15,12 +15,6 @@ public class UserService {
 @Autowired
     private UserRepository userRepository;
 
-//    List<User> users =new ArrayList<>( Arrays.asList(
-////            new User(1, "ff", "1", "1"),
-////            new User(2, "qqq", "qq", "qqq")
-//    ));
-
-
     public List<User> GetAllUsers() {
         List<User> users=new ArrayList<>();
          userRepository.findAll().forEach(users::add);
@@ -29,7 +23,7 @@ public class UserService {
 
     public User getUser(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        return optionalUser.orElse(null); // or throw an exception if necessary
+        return optionalUser.orElse(null);
     }
 
     public void addUser(User user) {
@@ -43,8 +37,5 @@ public class UserService {
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
-
-
-
 
 }

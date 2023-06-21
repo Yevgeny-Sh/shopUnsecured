@@ -38,4 +38,9 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+//    @RequestMapping(method = RequestMethod.DELETE,value = "users/{id}")
+//    public void deleteUser(@PathVariable int id){
+//        userService.deleteUser(id);
+//    }
+
 }
