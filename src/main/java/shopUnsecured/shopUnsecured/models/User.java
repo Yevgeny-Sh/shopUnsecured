@@ -8,7 +8,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer userId;
     private String name;
     private String email;
     private String userType;
@@ -26,12 +26,12 @@ public class User {
        // this.roles = roles;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(int user_id) {
-        this.id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
     public String getName() {

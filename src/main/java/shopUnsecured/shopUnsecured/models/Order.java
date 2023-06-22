@@ -35,7 +35,7 @@ public class Order {
 //    }
     public Order(int id, Date orderDate, double totalAmount) {
         this.user= new User("user","","user","");
-        user.setId(id);
+        user.setUserId(id);
         this.orderDate = new Date();;
         this.totalAmount = totalAmount;
     }
@@ -86,6 +86,6 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
-        this.user.setId(user.getId()); // Set the user ID for the foreign key relationship
+        this.user.setUserId(user.getUserId()); // Set the user ID for the foreign key relationship
     }
 }

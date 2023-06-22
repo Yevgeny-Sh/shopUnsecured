@@ -63,7 +63,7 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/orders")
     public void createOrder(@RequestBody Order order, @RequestParam("userId") int userId) {
-        System.out.println("in createOrder");
+        System.out.println("in createOrder conttroller method");
         double totalAmount = order.getTotalAmount();
         orderService.createOrder(totalAmount, userId);
     }

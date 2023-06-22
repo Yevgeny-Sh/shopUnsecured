@@ -29,19 +29,20 @@ public class OrderService {
     public List<Order> getAllOrdersByUser(Integer id) {
         List<Order> orders=new ArrayList<>();
 
-        OrderRepository.findByUserId(id).forEach(orders::add);
+        OrderRepository.findByUserUserId(id).forEach(orders::add);
         return orders;
     }
 
+
     public void addOrder(Order order) {
-
-        //OrderRepository.save(order);
-
+        OrderRepository.save(order);
     }
-    public void createOrder(double totalAmount, int userId) {
-        System.out.println("In createOrder");
+    public void createOrder(double totalAmount, Integer userId) {
+        System.out.println("createOrder");
 
         User user = userRepository.findById(userId).orElse(null);
+        System.out.println(user);
+
         if (user == null) {
             System.out.println("No user found");
             return; // or throw an exception if appropriate
@@ -50,6 +51,7 @@ public class OrderService {
         Order order = new Order(user, totalAmount);
         OrderRepository.save(order);
     }
+
 
     public void updateOrder(Order order, int id) {
         OrderRepository.save(order);
