@@ -28,18 +28,18 @@ public class OrderService {
     public List<Order> getAllOrdersByUser(Integer id) {
         List<Order> orders=new ArrayList<>();
 
-        OrderRepository.findByUserId(id).forEach(orders::add);
+        orders.addAll(OrderRepository.findByUserId(id));
         return orders;
     }
 
 
-    public void addOrder(Order order) {
-        OrderRepository.save(order);
-    }
+//    public void addOrder(Order order) {
+//        OrderRepository.save(order);
+//    }
     public void createOrder(double totalAmount, Integer userId) {
         System.out.println("createOrder");
 
-        User user = userRepository.getById(userId);
+        User user = userRepository.findById(userId).orElse(null);
         System.out.println(user);
 
         if (user == null) {
