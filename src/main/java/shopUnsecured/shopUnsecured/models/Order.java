@@ -12,27 +12,19 @@ import java.util.Date;
 @Entity
 @Table(name = "orders")
 public class Order {
-//    @Autowired
-//    UserRepository userRepository;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") // Name of the foreign key column in the Orders table
+    @JoinColumn(name = "id") // Name of the foreign key column in the Orders table
     private User user;
     private Date orderDate;
     private double totalAmount;
 
-    // Constructors
     protected Order() {}
 
-//    public Order(String user, Date orderDate, double totalAmount) {
-//        this.userId = new User("user","","user","");
-//        this.orderDate = orderDate;
-//        this.totalAmount = totalAmount;
-//    }
     public Order(int id, Date orderDate, double totalAmount) {
         this.user= new User("user","","user","");
         user.setUserId(id);
@@ -44,18 +36,6 @@ public class Order {
         this.totalAmount = totalAmount;
         this.orderDate = new Date();
     }
-//    public Order(int id, double totalAmount) {
-//        this.user= new User("user","","user","");
-//        user.setId(id);
-//        this.orderDate = new Date();;
-//        this.totalAmount = totalAmount;
-//    }
-
-
-//    public Order( double totalAmount) {
-//        this.orderDate = new Date();
-//        this.totalAmount = totalAmount;
-//    }
 
 
     public int getOrderId() {

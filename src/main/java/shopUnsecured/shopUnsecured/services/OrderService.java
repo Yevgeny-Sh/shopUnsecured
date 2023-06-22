@@ -28,7 +28,7 @@ public class OrderService {
     public List<Order> getAllOrdersByUser(Integer id) {
         List<Order> orders=new ArrayList<>();
 
-        orders.addAll(OrderRepository.findByUserUserId(id));
+        OrderRepository.findByUserId(id).forEach(orders::add);
         return orders;
     }
 
@@ -39,13 +39,15 @@ public class OrderService {
     public void createOrder(double totalAmount, Integer userId) {
         System.out.println("createOrder");
 
-        User user = userRepository.findById(userId).orElse(null);
+        User user = userRepository.getById(userId);
         System.out.println(user);
 
         if (user == null) {
             System.out.println("No user found");
             return; // or throw an exception if appropriate
         }
+
+        System.out.println(user.getUserId());
 
         Order order = new Order(user, totalAmount);
         OrderRepository.save(order);
