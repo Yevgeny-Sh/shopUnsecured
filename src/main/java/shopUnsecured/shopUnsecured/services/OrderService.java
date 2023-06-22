@@ -8,7 +8,6 @@ import shopUnsecured.shopUnsecured.repositories.OrderRepository;
 import shopUnsecured.shopUnsecured.repositories.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,7 +20,7 @@ public class OrderService {
 
     public List<Order> getAllOrders() {
         List<Order> orders=new ArrayList<>();
-        OrderRepository.findAll().forEach(orders::add);
+        orders.addAll(OrderRepository.findAll());
         return orders;
     }
 
@@ -29,7 +28,7 @@ public class OrderService {
     public List<Order> getAllOrdersByUser(Integer id) {
         List<Order> orders=new ArrayList<>();
 
-        OrderRepository.findByUserUserId(id).forEach(orders::add);
+        orders.addAll(OrderRepository.findByUserUserId(id));
         return orders;
     }
 
