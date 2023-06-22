@@ -14,7 +14,7 @@ public class Product {
     private double price;
     private int quantity;
 
-    // Constructors
+
     protected Product() {}
 
     public Product(String name, String description, double price, int quantity) {
@@ -24,7 +24,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    // Getters and Setters
+
     public Integer getProductId() {
         return product_id;
     }

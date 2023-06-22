@@ -8,7 +8,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_id;
+    private Integer id;
     private String name;
     private String email;
     private String userType;
@@ -16,9 +16,7 @@ public class User {
     //private String roles;
 
 
-    // Constructors
-    protected User() {
-    }
+    protected User() {}
 
     public User(String name, String email, String userType, String password) {
         this.name = name;
@@ -28,13 +26,12 @@ public class User {
        // this.roles = roles;
     }
 
-    // Getters and Setters
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(int user_id) {
-        this.user_id = user_id;
+    public void setId(int user_id) {
+        this.id = user_id;
     }
 
     public String getName() {

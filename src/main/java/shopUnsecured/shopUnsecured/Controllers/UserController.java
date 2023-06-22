@@ -20,7 +20,7 @@ public class UserController {
 
     @RequestMapping("users/{id}")
     public User getUser(@PathVariable int id){
-        return userService.getUser(id);
+        return userService.getUserById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "/users")
@@ -37,10 +37,5 @@ public class UserController {
     public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
     }
-
-//    @RequestMapping(method = RequestMethod.DELETE,value = "users/{id}")
-//    public void deleteUser(@PathVariable int id){
-//        userService.deleteUser(id);
-//    }
 
 }
