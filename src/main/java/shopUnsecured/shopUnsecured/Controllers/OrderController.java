@@ -14,25 +14,20 @@ public class OrderController {
 
     @RequestMapping("/orders")
     public List<Order> getAllOrders() {
-        System.out.println("in getAllOrders");
         return orderService.getAllOrders();
     }
 
     @RequestMapping("/orders/{id}")
     public List<Order> getAllOrdersForUser(@PathVariable int id) {
-        System.out.println("in getAllOrdersByUser");
         return orderService.getAllOrdersByUser(id);
     }
 
-
+//http://localhost:8080/orders?userId=52
     @RequestMapping(method = RequestMethod.POST, value = "/orders")
     public void createOrder(@RequestBody Order order, @RequestParam("userId") int userId) {
-        System.out.println("in createOrder conttroller method");
         double totalAmount = order.getTotalAmount();
         orderService.createOrder(totalAmount, userId);
     }
-
-
 
     @RequestMapping(method = RequestMethod.PUT,value = "orders/{id}")
     public void updateOrder(@RequestBody Order order,@PathVariable int id){

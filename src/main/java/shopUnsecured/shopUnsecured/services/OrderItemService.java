@@ -1,7 +1,6 @@
 package shopUnsecured.shopUnsecured.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import shopUnsecured.shopUnsecured.models.Order;
 import shopUnsecured.shopUnsecured.models.OrderItem;
@@ -11,8 +10,10 @@ import shopUnsecured.shopUnsecured.repositories.OrderItemRepository;
 import shopUnsecured.shopUnsecured.repositories.OrderRepository;
 import shopUnsecured.shopUnsecured.repositories.ProductRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+
+
+//in this service i wrapped  some repository calls in try catch
 
 @Service
 public class OrderItemService {
@@ -26,59 +27,54 @@ public class OrderItemService {
     ProductRepository productRepository;
 
 
-//    public List<OrderItem> getAllOrderItems() {
-//        List<OrderItem> orderItems = new ArrayList<>();
-//        System.out.println("in getAllOrderItems IN SERVICE");
-//
-//        orderItems.addAll(orderItemRepository.findAll());
-//        System.out.println(orderItems);
-//
-//        return orderItems;
-//    }
 public List<OrderItem> getAllOrderItems() {
     return orderItemRepository.findAll();
 }
 
 
-//    public List<OrderItem> getAllOrderItemsByOrderId(int orderId) {
-//        return orderItemRepository.findAllByOrderOrderId(orderId);
-//    }
-//
-//
-//    //    public void addOrder(Order order) {
-////        OrderRepository.save(order);
-////    }
+    public List<OrderItem> getAllOrderItemsByOrderId(int orderId) {
+        return orderItemRepository.findAllByOrderOrderId(orderId);
+    }
+
     public void createOrderItem( Integer productId, Integer orderId,Integer quantity) {
-        System.out.println("create Order item");
 
         Order order = orderRepository.findById(orderId).orElse(null);
-        System.out.println(order);
         if (order == null) {
            System.out.println("No order found");
             return;
         }
-        System.out.println(order.getOrderId());
-
         Product product = productRepository.findById(productId).orElse(null);
-        System.out.println(product);
-        if (order == null) {
+        if (product == null) {
             System.out.println("No product found");
             return;
         }
 
         OrderItem orderItem = new OrderItem(order,product,quantity);
-        orderItemRepository.save(orderItem);
+        try {
+            orderItemRepository.save(orderItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-//
-//
     public void updateOrder(OrderItem orderItem, int id) {
-        orderItemRepository.save(orderItem);
-
+        try {
+            orderItemRepository.save(orderItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void deleteOrderItem(int id) {
-        orderItemRepository.deleteById(id);
+        try {
+            orderItemRepository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void deleteAllOrderItems() {
-        orderItemRepository.deleteAll();
+        try {
+            orderItemRepository.deleteAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

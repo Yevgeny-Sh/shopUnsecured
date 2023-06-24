@@ -10,15 +10,16 @@ public class OrderItem {
     private int orderItemId;
 
     @ManyToOne
-        @JoinColumn(name = "orderId")
+    @JoinColumn(name = "orderId")
     private Order order;
-  //  private int orderId;
 
     @ManyToOne
     @JoinColumn(name = "productId") // Name of the foreign key column
     private Product product;
     private int quantity;
     private double itemAmount;
+
+    protected OrderItem() {}
 
     public OrderItem(Order order, Product product, int quantity, double itemAmount) {
         this.order = order;
@@ -32,6 +33,7 @@ public class OrderItem {
         this.quantity = quantity;
         this.itemAmount = product.getPrice()*quantity;
     }
+
 
     public int getOrderItemId() {
         return orderItemId;

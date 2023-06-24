@@ -2,10 +2,8 @@ package shopUnsecured.shopUnsecured.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import shopUnsecured.shopUnsecured.models.Order;
 import shopUnsecured.shopUnsecured.models.OrderItem;
 import shopUnsecured.shopUnsecured.services.OrderItemService;
-import shopUnsecured.shopUnsecured.services.OrderService;
 
 import java.util.List;
 
@@ -17,25 +15,22 @@ public class OrderItemController {
 
     @RequestMapping("/orderItems")
     public List<OrderItem> getAllOrderItems() {
-        System.out.println("in getAllOrder items");
         return orderItemService.getAllOrderItems();
     }
 
-//    @RequestMapping("/orderItems/{id}")
-//    public List<OrderItem> getAllOrdersItemsForOrder(@PathVariable int id) {
-//        System.out.println("in getAllOrdersItemsForOrder");
-//        return orderItemService.getAllOrderItemsByOrderId(id);
-//    }
-
-
-    @RequestMapping(method = RequestMethod.POST, value = "/orderItems")
-    public void createOrderItem(@RequestBody int productId,@RequestBody int quantity, @RequestParam("orderId") int orderId) {
-        System.out.println("in createOrder conttroller method");
-        //int x = orderItem.getProduct().getProductId();
-        //orderService.createOrder(totalAmount, userId);
-        orderItemService.createOrderItem(productId,orderId,quantity);
+    @RequestMapping("/orderItems/{id}")
+    public List<OrderItem> getAllOrdersItemsForOrder(@PathVariable int id) {
+        return orderItemService.getAllOrderItemsByOrderId(id);
     }
 
+
+    //"http://localhost:8080/orderItems?orderId=3"
+    @RequestMapping(method = RequestMethod.POST, value = "/orderItems")
+    public void createOrderItem(@RequestBody OrderItem orderItem, @RequestParam("orderId") int orderId,
+                                @RequestParam("productId") int productId) {
+        int quantity = orderItem.getQuantity();
+       orderItemService.createOrderItem(productId,orderId,quantity);
+    }
 
 
     @RequestMapping(method = RequestMethod.PUT,value = "orderItems/{id}")

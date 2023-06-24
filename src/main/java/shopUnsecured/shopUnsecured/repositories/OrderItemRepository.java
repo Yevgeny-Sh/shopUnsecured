@@ -5,5 +5,5 @@ import shopUnsecured.shopUnsecured.models.OrderItem;
 import java.util.List;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
-     //List<OrderItem> findAllByOrderOrderId(int orderId);
+     List<OrderItem> findAllByOrderOrderId(int orderId);
 }

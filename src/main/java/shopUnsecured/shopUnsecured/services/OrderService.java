@@ -32,27 +32,15 @@ public class OrderService {
         return orders;
     }
 
-
-//    public void addOrder(Order order) {
-//        OrderRepository.save(order);
-//    }
-    public void createOrder(double totalAmount, Integer userId) {
-        System.out.println("createOrder");
-
+    public void createOrder(double totalAmount, int userId) {
         User user = userRepository.findById(userId).orElse(null);
-        System.out.println(user);
-
         if (user == null) {
             System.out.println("No user found");
-            return; // or throw an exception if appropriate
+            return;
         }
-
-        System.out.println(user.getUserId());
-
         Order order = new Order(user, totalAmount);
         OrderRepository.save(order);
     }
-
 
     public void updateOrder(Order order, int id) {
         OrderRepository.save(order);

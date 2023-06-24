@@ -1,11 +1,6 @@
 package shopUnsecured.shopUnsecured.models;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import shopUnsecured.shopUnsecured.repositories.UserRepository;
-import org.springframework.stereotype.Repository;
-import shopUnsecured.shopUnsecured.services.UserService;
 
 import java.util.Date;
 
@@ -18,7 +13,7 @@ public class Order {
     private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "id") // Name of the foreign key column in the Orders table
+    @JoinColumn(name = "id") // Name of the foreign key column
     private User user;
     private Date orderDate;
     private double totalAmount;
@@ -66,6 +61,6 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
-        this.user.setUserId(user.getUserId()); // Set the user ID for the foreign key relationship
+      //  this.user.setUserId(user.getUserId()); // Set the user ID for the foreign key relationship
     }
 }
